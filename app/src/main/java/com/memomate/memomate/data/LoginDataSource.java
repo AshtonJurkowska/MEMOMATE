@@ -1,29 +1,35 @@
-package com.memomate.memomate.data;
-
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.AuthResult;
 import com.memomate.memomate.data.model.LoggedInUser;
 
-import java.io.IOException;
-
-/**
- * Class that handles authentication w/ login credentials and retrieves user information.
- */
 public class LoginDataSource {
 
-    public Result<LoggedInUser> login(String username, String password) {
-
-        try {
-            // TODO: handle loggedInUser authentication
-            LoggedInUser fakeUser =
-                    new LoggedInUser(
-                            java.util.UUID.randomUUID().toString(),
-                            "Jane Doe");
-            return new Result.Success<>(fakeUser);
-        } catch (Exception e) {
-            return new Result.Error(new IOException("Error logging in", e));
-        }
+    public void login(String email, String password, final LoginCallback callback) {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                        if (firebaseUser != null) {
+                            LoggedInUser loggedInUser = new LoggedInUser(
+                                    firebaseUser.getUid(),
+                                    firebaseUser.getEmail()); // Użyj adresu e-mail jako nazwy użytkownika
+                            callback.onLoginSuccess(loggedInUser);
+                        } else {
+                            callback.onLoginError("Firebase user is null");
+                        }
+                    } else {
+                        callback.onLoginError("Login failed: " + task.getException().getMessage());
+                    }
+                });
     }
 
     public void logout() {
-        // TODO: revoke authentication
+        FirebaseAuth.getInstance().signOut();
+    }
+
+    public interface LoginCallback {
+        void onLoginSuccess(LoggedInUser user);
+        void onLoginError(String errorMessage);
     }
 }
