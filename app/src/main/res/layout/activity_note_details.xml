@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:fitsSystemWindows="true"
+android:layout_width="match_parent"
+android:layout_height="match_parent">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/notesListToolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:titleTextColor="@color/black"
+    app:subtitleTextColor="@color/black"
+    android:background="?attr/colorPrimary"
+    app:title="Memomate" />
+
+    <LinearLayout
+        android:layout_below="@+id/notesListToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Title"
+            android:textSize="36sp"
+            android:inputType="textCapWords"
+            android:padding="8dp"
+            android:paddingBottom="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/editTextContent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hint="Content"
+            android:textSize="16sp"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="8dp"
+            android:minLines="10"
+            android:scrollbars="vertical"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextSharingKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Sharing key (optional)"
+                android:textSize="16sp"
+                android:padding="8dp"
+                android:paddingBottom="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="center">
+
+                <Button
+                    android:id="@+id/buttonCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/cancel"
+                    android:padding="16dp"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="8dp"/>
+
+                <Button
+                    android:id="@+id/buttonSave"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/save"
+                    android:padding="16dp"
+                    android:textSize="18sp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+

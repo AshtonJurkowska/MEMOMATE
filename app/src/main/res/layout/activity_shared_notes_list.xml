@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/notesListToolbar"
+        android:id="@+id/sharedNotesListToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleTextColor="@color/black"
@@ -15,7 +15,7 @@
         app:title="Memomate" />
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_below="@id/notesListToolbar"
+        android:layout_below="@id/sharedNotesListToolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/regular_gap"
-            android:text="@string/my_notes"
+            android:text="Notes shared with me"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="36sp"
@@ -37,15 +37,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/notesListHeader"
-            />
-
-        <Button
-            android:id="@+id/createNoteButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create note"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
